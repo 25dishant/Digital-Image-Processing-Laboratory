@@ -6,6 +6,7 @@ from GradientY import GradientY
 import math as m
 import cv2 as cv
 import PIL
+from Non_Max_Suppression import Non_Max_Suppression
 
 Laplacian_kernal = np.array([[0.093124, 0.0118914, 0.093124],
                              [0.118914, 0.151845, -0.118914],
@@ -62,4 +63,13 @@ plt.imsave(fname='Image_edge_angle.jpg',
 
 # cv.imwrite("Magnitude.jpg", S)
 # plt.show()
+
+# Magnitude = cv.imread('Magnitude_image.jpg', cv.COLOR_BGR2GRAY)
+# Angle = cv.imread('Image_edge_angle.jpg', cv.COLOR_BGR2GRAY)
+
+Image_After_Non_Maximum_Suppression = Non_Max_Suppression(S, Theta)
+
+plt.imsave(fname='Image_After_Non_Maximum_Suppression.jpg',
+           cmap='gray', arr=Image_After_Non_Maximum_Suppression, format='jpg')
+cv.imshow('Check3', Image_After_Non_Maximum_Suppression)
 cv.waitKey(0)
