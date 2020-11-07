@@ -7,6 +7,7 @@ import math as m
 import cv2 as cv
 import PIL
 from Non_Max_Suppression import Non_Max_Suppression
+from HysteresisThreshold import HysteresisThreshold
 
 Laplacian_kernal = np.array([[0.093124, 0.0118914, 0.093124],
                              [0.118914, 0.151845, -0.118914],
@@ -72,4 +73,9 @@ Image_After_Non_Maximum_Suppression = Non_Max_Suppression(S, Theta)
 plt.imsave(fname='Image_After_Non_Maximum_Suppression.jpg',
            cmap='gray', arr=Image_After_Non_Maximum_Suppression, format='jpg')
 cv.imshow('Check3', Image_After_Non_Maximum_Suppression)
+Image_After_Hysteresis_Thresholding = HysteresisThreshold(
+    Image_After_Non_Maximum_Suppression, 0.2, 0.9)
+plt.imsave(fname='Image_After_Hysteresis_Thresholding.jpg',
+           cmap='gray', arr=Image_After_Hysteresis_Thresholding, format='jpg')
+cv.imshow('Check4', Image_After_Hysteresis_Thresholding)
 cv.waitKey(0)
