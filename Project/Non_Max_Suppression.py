@@ -1,5 +1,6 @@
 """
-Non maximum suppression without interpolation requires us to divide the 3x3 grid of pixels into 8 sections. ie. if the gradient direction falls in between the angle -22.5 and 22.5, then we use the pixels that fall between this angle (r and q) as the value to compare with pixel p, see image below.
+Non maximum suppression without interpolation requires us to divide the 3x3 grid of pixels into 8 sections. ie. if the gradient direction falls in between 
+the angle -22.5 and 22.5, then we use the pixels that fall between this angle (r and q) as the value to compare with pixel p, see image below.
 
 """
 import numpy as np
