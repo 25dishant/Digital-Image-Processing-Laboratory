@@ -47,7 +47,7 @@ Sobel_kernelY2 = np.array([[1, 4, 7, 4, 1],
 
 
 Blurred_Image = GaussianBlur(
-    'Rectangles.jpg', Laplacian_kernal1.shape, Laplacian_kernal1)
+    'new.jpg', Laplacian_kernal1.shape, Laplacian_kernal1)
 
 Differentiated_in_X_Direction_Image = GradientX(
     Blurred_Image, Sobel_kernelX.shape, Sobel_kernelX)
@@ -71,7 +71,6 @@ S = np.abs(np.sqrt(Sx**2 + Sy**2))
 print(type(S))
 # img = PIL.Image.fromarray(S)
 # img.show()
-
 
 plt.imsave(fname='Magnitude_Image.jpg',
            cmap='gray', arr=S, format='jpg')
