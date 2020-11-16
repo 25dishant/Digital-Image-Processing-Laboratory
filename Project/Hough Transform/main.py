@@ -47,7 +47,7 @@ Sobel_kernelY2 = np.array([[1, 4, 7, 4, 1],
 
 
 Blurred_Image = GaussianBlur(
-    'lena.jpg', Laplacian_kernal1.shape, Laplacian_kernal1)
+    'Rectangles.jpg', Laplacian_kernal1.shape, Laplacian_kernal1)
 
 Differentiated_in_X_Direction_Image = GradientX(
     Blurred_Image, Sobel_kernelX.shape, Sobel_kernelX)

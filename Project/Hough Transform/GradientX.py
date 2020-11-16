@@ -21,7 +21,7 @@ def GradientX(ImageName, kernel_size, Sobel_kernelX):
     height = len(ImageMatrix)  # Height of the Image Matrix
 
     # Condition to check the squared kernel
-    if kernel_size[0] == kernel_size[1] and kernel_size[0] > 2:
+    if (kernel_size[0] == kernel_size[1]) and (kernel_size[0] > 2):
         # Pad the image to avoid any loss of information after convolution
         ImageMatrix = np.pad(ImageMatrix, kernel_size[0]-2, mode='constant')
     else:
