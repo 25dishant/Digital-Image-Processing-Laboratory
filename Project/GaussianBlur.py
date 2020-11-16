@@ -40,9 +40,9 @@ def GaussianBlur(ImageName, kernel_size, Laplacian_kernal):
 
     Transformed_Matrix = []
     Matrix_Sampling = np.array(Matrix_Sampling)
-    for each_mat in Matrix_Sampling:
+    for Submatrix in Matrix_Sampling:
         Transformed_Matrix.append(
-            np.sum(np.multiply(each_mat, Laplacian_kernal)))
+            np.sum(np.multiply(Submatrix, Laplacian_kernal)))
     reshape_val = int(math.sqrt(Matrix_Sampling.shape[0]))
     Transformed_Matrix = np.array(
         Transformed_Matrix).reshape(reshape_val, reshape_val)
