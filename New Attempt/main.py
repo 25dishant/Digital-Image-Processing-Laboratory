@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 from GaussianBlur import GaussianBlur
-from GradientX import GradientX
+from Gradient import Gradient
 from Non_Max_Suppression import Non_Max_Suppression
 from HysteresisThreshold import HysteresisThreshold
 
@@ -47,11 +47,9 @@ if __name__ == "__main__":
     BlurredImage = GaussianBlur(
         "Rectangles.jpg", Laplacian_kernal1.shape, Laplacian_kernal1)
 
-    ImageX = GradientX(BlurredImage, Sobel_kernelX,
-                       average=False, verbose=False)
+    ImageX = Gradient(BlurredImage, Sobel_kernelX)
 
-    ImageY = GradientX(BlurredImage, Sobel_kernelY,
-                       average=False, verbose=False)
+    ImageY = Gradient(BlurredImage, Sobel_kernelY)
 
     Magnitude_Image = np.sqrt(ImageX**2 + ImageY**2)
 
@@ -69,3 +67,4 @@ if __name__ == "__main__":
     cv.imshow("Image_NonMaxSuppression", Image_NonMaxSuppression)
     cv.imshow("Image_HysImage_HysteresisThreshold", Image_HysteresisThreshold)
     cv.waitKey(0)
+    cv.destroyAllWindows()

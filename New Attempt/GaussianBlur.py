@@ -27,23 +27,23 @@ def GaussianBlur(ImageName, kernel_size, Laplacian_kernal):
     else:
         pass
 
-    GiantMatrix = []
+    Main_Matrix = []
     for i in range(0, height-kernel_size[1]+1):
         for j in range(0, width-kernel_size[0]+1):
-            GiantMatrix.append([
+            Main_Matrix.append([
                 [ImageMatrix[col][row]
                  for row in range(j, j + kernel_size[0])]
                 for col in range(i, i + kernel_size[1])
             ])
 
-    Matrix_Sampling = np.array(GiantMatrix)
+    Main_Matrix = np.array(Main_Matrix)
 
     Transformed_Matrix = []
-    Matrix_Sampling = np.array(Matrix_Sampling)
-    for Submatrix in Matrix_Sampling:
+    Main_Matrix = np.array(Main_Matrix)
+    for Submatrix in Main_Matrix:
         Transformed_Matrix.append(
             np.sum(np.multiply(Submatrix, Laplacian_kernal)))
-    reshape_val = int(math.sqrt(Matrix_Sampling.shape[0]))
+    reshape_val = int(math.sqrt(Main_Matrix.shape[0]))
     Transformed_Matrix = np.array(
         Transformed_Matrix).reshape(reshape_val, reshape_val)
 
