@@ -47,7 +47,7 @@ Sobel_kernelY2 = np.array([[1, 4, 7, 4, 1],
 
 
 Blurred_Image = GaussianBlur(
-    'new.jpg', Laplacian_kernal1.shape, Laplacian_kernal1)
+    'Rectangles.jpg', Laplacian_kernal1.shape, Laplacian_kernal1)
 
 Differentiated_in_X_Direction_Image = GradientX(
     Blurred_Image, Sobel_kernelX.shape, Sobel_kernelX)
@@ -87,6 +87,11 @@ plt.imsave(fname='Edge_Angle_Image.jpg',
 # Angle = cv.imread('Image_edge_angle.jpg', cv.COLOR_BGR2GRAY)
 
 Image_After_Non_Maximum_Suppression = Non_Max_Suppression(S, Theta)
+
+# Image_After_Non_Maximum_Suppression = cv.dilate(Image_After_Non_Maximum_Suppression, cv.getStructuringElement(
+#     cv.MORPH_RECT, (3, 3)), iterations=1)
+# Image_After_Non_Maximum_Suppression = cv.erode(Image_After_Non_Maximum_Suppression, cv.getStructuringElement(
+#     cv.MORPH_RECT, (3, 3)), iterations=1)
 
 plt.imsave(fname='Image_After_Non_Maximum_Suppression.jpg',
            cmap='gray', arr=Image_After_Non_Maximum_Suppression, format='jpg')
