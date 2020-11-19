@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 import math
-
+import matplotlib.pyplot as plt
 
 Gaussian_kernal1 = np.array([[0.093124, 0.0118914, 0.093124],
                              [0.118914, 0.151845, 0.118914],
@@ -174,27 +174,51 @@ def HysteresisThreshold(Image, low, high):
 
 
 if __name__ == "__main__":
+
+    ImageName = input(
+        "Enter the name of Image alongwith Extension \n (Image must be in the same folder)\n")
+
     BlurredImage = GaussianBlur(
-        "Rectangles.jpg", Gaussian_kernal1.shape, Gaussian_kernal1)
+        ImageName, Gaussian_kernal1.shape, Gaussian_kernal1)
 
     ImageX = Gradient(BlurredImage, Sobel_kernelX)
 
+    plt.imsave(fname='ImageX.jpg',
+               cmap='gray', arr=ImageX, format='jpg')
+
     ImageY = Gradient(BlurredImage, Sobel_kernelY)
+
+    plt.imsave(fname='ImageY.jpg',
+               cmap='gray', arr=ImageY, format='jpg')
 
     Magnitude_Image = np.sqrt(ImageX**2 + ImageY**2)
 
+    plt.imsave(fname='Magnitude_Image.jpg',
+               cmap='gray', arr=Magnitude_Image, format='jpg')
+
     Angle_Image = np.arctan2(ImageY, ImageX)
+
+    plt.imsave(fname='Angle_Image.jpg',
+               cmap='gray', arr=Angle_Image, format='jpg')
 
     Image_NonMaxSuppression = Non_Max_Suppression(Magnitude_Image, Angle_Image)
 
+    plt.imsave(fname='Image_NonMaxSuppression.jpg',
+               cmap='gray', arr=Image_NonMaxSuppression, format='jpg')
+
     Image_HysteresisThreshold = HysteresisThreshold(
         Image_NonMaxSuppression, 0.3, 0.7)
+
+    # cv.imwrite("Image_HysteresisThreshold.png", Image_HysteresisThreshold)
+
+    plt.imsave(fname='EdgeImage.jpg',
+               cmap='gray', arr=Image_HysteresisThreshold, format='jpg')
 
     cv.imshow("ImageX", ImageX)
     cv.imshow("ImageY", ImageY)
     cv.imshow("Magnitude_Image", Magnitude_Image)
     cv.imshow("Angle_Image", Angle_Image)
     cv.imshow("Image_NonMaxSuppression", Image_NonMaxSuppression)
-    cv.imshow("Image_HysImage_HysteresisThreshold", Image_HysteresisThreshold)
+    cv.imshow("Image_HysteresisThreshold", Image_HysteresisThreshold)
     cv.waitKey(0)
     cv.destroyAllWindows()
