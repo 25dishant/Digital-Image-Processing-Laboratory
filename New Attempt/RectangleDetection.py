@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 image = cv.imread("Rectangles.jpg")
 
@@ -15,17 +16,17 @@ edgeImage = cv.imread("EdgeImage.jpg")
 
 edgeImage = cv.cvtColor(edgeImage, cv.COLOR_BGR2GRAY)
 
-image_dilate = cv.dilate(
-    edgeImage,
-    cv.getStructuringElement(cv.MORPH_RECT, (5, 5)),
-    iterations=1)
+# image_dilate = cv.dilate(
+#     edgeImage,
+#     cv.getStructuringElement(cv.MORPH_RECT, (5, 5)),
+#     iterations=1)
 
 # image_erode = cv.erode(
 #     image_dilate,
 #     cv.getStructuringElement(cv.MORPH_RECT, (3, 3)),
 #     iterations=1)
 
-lines = cv.HoughLinesP(image_dilate, 1, np.pi/180, 50)
+lines = cv.HoughLinesP(edgeImage, 1, np.pi/180, 50)
 
 for line in lines:
     x1, y1, x2, y2 = line[0]
@@ -33,12 +34,12 @@ for line in lines:
 
 
 coutours, hierarchy = cv.findContours(
-    image_dilate, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
-print(f"Number of objects is {len(coutours)}")
+    edgeImage, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
+print(f"Number of objects is {math.ceil(len(coutours)/4)}")
 
 cv.imshow("Image", image)
 cv.imshow("EdgeImage", edgeImage)
-cv.imshow("image_dilate", image_dilate)
+# cv.imshow("image_dilate", image_dilate)
 # cv.imshow("image_erode", image_erode)
 
 cv.waitKey(0)
