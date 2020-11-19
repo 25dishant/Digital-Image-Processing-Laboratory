@@ -91,8 +91,6 @@ def GaussianBlur(ImageName, kernel_size, Gaussian_kernal):
     return OutputImageName
 
 
-# Function for the gradient
-# It takes the Gaussian blurred image and kernel as the input and returns the gradient of the image
 def Gradient(image, kernel):
     image = cv.imread(image)
 
@@ -118,8 +116,6 @@ def Gradient(image, kernel):
                 kernel * padded_image[row:row + kernel_row, col:col + kernel_col])
 
     return output
-
-# This is the non maximaum suppression fucntion without interpolation.
 
 
 def Non_Max_Suppression(Image, Angle):
@@ -156,8 +152,6 @@ def Non_Max_Suppression(Image, Angle):
                     Image_Matrix[h, w] = 0
 
     return Image_Matrix
-
-# A function for the double thresholding of the image
 
 
 def HysteresisThreshold(Image, low, high):
